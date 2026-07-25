@@ -12,309 +12,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f7f6f3;
-            /* Dirty White / Off-White */
-            color: #1e293b;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- ENHANCED BACKGROUND EFFECTS --- */
-
-        /* Interactive Spot Light Follower */
-        .cursor-light {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: -1;
-            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.08), transparent 80%);
-            transition: background 0.15s ease-out;
-        }
-
-        /* Ambient Glowing Background Orbs */
-        .bg-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.45;
-            z-index: -3;
-            pointer-events: none;
-            will-change: transform;
-        }
-
-        .orb-1 {
-            width: 450px;
-            height: 450px;
-            background: #38bdf8;
-            top: -100px;
-            left: -100px;
-            animation: float-1 18s ease-in-out infinite alternate;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: #818cf8;
-            top: 35%;
-            right: -150px;
-            animation: float-2 22s ease-in-out infinite alternate;
-        }
-
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: #34d399;
-            bottom: 5%;
-            left: -100px;
-            animation: float-3 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes float-1 {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(120px, 80px) scale(1.15);
-            }
-        }
-
-        @keyframes float-2 {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(-100px, 120px) scale(1.1);
-            }
-        }
-
-        @keyframes float-3 {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(80px, -100px) scale(1.2);
-            }
-        }
-
-        /* Faint Tech Grid Pattern */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        .page-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(203, 213, 225, 0.25) 0%, rgba(247, 246, 243, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* --- CARD & UI EFFECTS --- */
-
-        .cream-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-        }
-
-        .cream-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 55%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-            transition: left 0.8s ease;
-            pointer-events: none;
-        }
-
-        .cream-card:hover::before {
-            left: 150%;
-        }
-
-        .cream-card-hover:hover {
-            border-color: rgba(56, 189, 248, 0.4);
-            transform: translateY(-8px) scale(1.015) !important;
-            box-shadow: 0 20px 40px rgba(2, 132, 199, 0.12), 0 8px 18px rgba(0, 0, 0, 0.08) !important;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Blink Shiny Green Badge */
-        @keyframes shiny-pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-            }
-
-            50% {
-                box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.6);
-            }
-        }
-
-        .shiny-green-badge {
-            animation: shiny-pulse 2s infinite;
-        }
-
-        /* Scroll Reveal Effect Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .skill-tag {
-            background-color: #f1f5f9;
-            color: #334155;
-            padding: 0.35rem 0.85rem;
-            border-radius: 0.5rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background-color: #0284c7;
-            color: #ffffff;
-            transform: translateY(-2px) scale(1.05);
-            border-color: #0284c7;
-            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.25);
-        }
-
-        .tech-tag {
-            font-size: 11px;
-            background-color: #f1f5f9;
-            padding: 0.2rem 0.6rem;
-            border-radius: 0.25rem;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-            font-weight: 500;
-        }
-
-        nav a {
-            transition: 0.3s ease;
-        }
-
-        nav a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-        }
-
-        button,
-        a {
-            transition: all 0.3s ease;
-        }
-
-        a:active,
-        button:active {
-            transform: scale(0.97);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f7f6f3;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Chat Typing Indicator Dots */
-        .typing-dot {
-            animation: typingBounce 1.4s infinite ease-in-out both;
-        }
-
-        .typing-dot:nth-child(1) {
-            animation-delay: -0.32s;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: -0.16s;
-        }
-
-        @keyframes typingBounce {
-
-            0%,
-            80%,
-            100% {
-                transform: scale(0);
-            }
-
-            40% {
-                transform: scale(1);
-            }
-        }
-
-        /* Maximized state for chatbot window */
-        /* Maximized state: anchored at bottom-right, expanded dimensions */
-        #chat-window {
-            /* Limit transition strictly to dimensions for a cleaner collapse */
-            transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                height 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-        }
-
-        #chat-window.maximized {
-            width: 650px !important;
-            max-width: 90vw !important;
-            height: 80vh !important;
-            max-height: 800px !important;
-        }
-
-        #chat-toggle-wrapper:hover #chat-tooltip {
-            opacity: 1;
-            transform: translateX(0);
-
-        }
-    </style>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="relative">
@@ -362,6 +61,19 @@
         </p>
 
         <div class="flex flex-wrap justify-center gap-4 mb-16">
+            <!-- Email Button -->
+             <div class="relative group">
+                <a href="mailto:jayplought@gmail.com"
+                    class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
+                    <i class="fa-solid fa-envelope text-xl text-rose-500"></i> Email
+                </a>
+                <span
+                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none z-10">
+                    jayplought@gmail.com
+                    <span class="absolute left-1/2 -translate-x-1/2 top-full -mt-1 w-2 h-2 bg-slate-900 rotate-45"></span>
+                </span>
+            </div>
+            
             <a href="https://github.com/JP-DelaVega" target="_blank"
                 class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
                 <i class="fa-brands fa-github text-xl"></i> GitHub
@@ -372,7 +84,7 @@
             </a>
             <a href="https://drive.google.com/file/d/1YjvkFY8b_CN2NPWv_ghPakDxTW6n40Np/view?usp=sharing" target="_blank"
                 rel="noopener noreferrer"
-                class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-xl transition-all flex items-center gap-2 transform hover:-translate-y-1">
+                class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center gap-2 transform hover:-translate-y-1">
                 <i class="fa-solid fa-file-arrow-down"></i> Download Resume
             </a>
         </div>
@@ -385,7 +97,7 @@
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+            <div class="cream-card p-6 rounded-2xl reveal">
                 <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
                     <i class="fa-solid fa-code"></i>
                 </div>
@@ -399,7 +111,7 @@
                 </div>
             </div>
 
-            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+            <div class="cream-card p-6 rounded-2xl reveal">
                 <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
                     <i class="fa-solid fa-laptop-code"></i>
                 </div>
@@ -410,10 +122,11 @@
                     <span class="skill-tag">Tailwind CSS</span>
                     <span class="skill-tag">HTML5</span>
                     <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">Figma</span>
                 </div>
             </div>
 
-            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+            <div class="cream-card p-6 rounded-2xl reveal">
                 <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
                     <i class="fa-solid fa-server"></i>
                 </div>
@@ -428,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+            <div class="cream-card p-6 rounded-2xl reveal">
                 <div
                     class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 text-xl mb-4">
                     <i class="fa-solid fa-brain"></i>
@@ -441,7 +154,7 @@
                 </div>
             </div>
 
-            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+            <div class="cream-card p-6 rounded-2xl reveal">
                 <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
                     <i class="fa-solid fa-cubes"></i>
                 </div>
@@ -452,7 +165,7 @@
                 </div>
             </div>
 
-            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+            <div class="cream-card p-6 rounded-2xl reveal">
                 <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
                     <i class="fa-solid fa-cloud"></i>
                 </div>
@@ -461,8 +174,7 @@
                     <span class="skill-tag">Microsoft Azure</span>
                     <span class="skill-tag">Docker</span>
                     <span class="skill-tag">Git & GitHub</span>
-                    <span class="skill-tag">Jira</span>
-                    <span class="skill-tag">Figma</span>
+                
                 </div>
             </div>
         </div>
@@ -474,90 +186,160 @@
             Work <span class="gradient-text">Experience</span>
         </h2>
 
-        <div class="relative border-l-2 border-slate-200/80 ml-4 md:ml-8 space-y-12">
+        <div class="relative border-l-2 border-slate-200/80 ml-4 md:ml-8 space-y-8">
 
             <!-- SGV & Co. -->
             <div class="relative pl-6 md:pl-8 group reveal">
                 <span
-                    class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
-                <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">Staff, Technology Consultant</h3>
-                            <h4 class="text-sky-600 font-semibold text-sm">SGV & Co.</h4>
+                    class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-sky-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform z-10"></span>
+
+                <details
+                    class="cream-card cream-card-hover rounded-2xl group/accordion overflow-hidden transition-all duration-300">
+                    <summary class="p-6 md:p-8 cursor-pointer list-none select-none">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between sm:justify-start gap-3">
+                                    <h3 class="text-xl font-bold text-slate-800">Technology Consultant</h3>
+                                    <span
+                                        class="w-7 h-7 rounded-full bg-slate-100 group-hover/accordion:bg-sky-50 flex items-center justify-center text-slate-500 group-hover/accordion:text-sky-600 transition-colors">
+                                        <i
+                                            class="fa-solid fa-chevron-down text-xs transition-transform duration-300 group-open/accordion:rotate-180"></i>
+                                    </span>
+                                </div>
+                                <h4 class="text-sky-600 font-semibold text-sm mt-0.5">SGV & Co.</h4>
+                            </div>
+                            <span
+                                class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit shrink-0">
+                                Apr 2023 - Present
+                            </span>
                         </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Apr
-                            2023 - Present</span>
+                        <p class="text-xs text-slate-400 mt-2">
+                            <i class="fa-solid fa-location-dot"></i> 6760 Ayala Ave, Makati City, 1226 Metro Manila
+                            (Hybrid)
+                        </p>
+                    </summary>
+
+                    <!-- Animated Grid Content Wrapper -->
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="px-6 pb-6 md:px-8 md:pb-8 pt-0 border-t border-slate-100/80">
+                                <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed mt-4">
+                                    <li>Enhanced and maintained the Bureau of Internal Revenue (BIR) ePERA application,
+                                        improving system functionality and usability across users.</li>
+                                    <li>Resolved UAT-critical issues in the BIR DEM and eServices forms, ensuring system
+                                        stability and production readiness.</li>
+                                    <li>Investigated and resolved cross-layer defects involving frontend interfaces,
+                                        backend services, and database queries, improving overall application
+                                        reliability.</li>
+                                    <li>Developed enterprise applications using OutSystems, including payroll
+                                        automation, probation tracking, and procurement workflows, implementing business
+                                        logic and process automation for internal operations.</li>
+                                    <li>Collaborated with QA testers, designers, and project managers in Agile sprints
+                                        to deliver compliant, high-quality enterprise applications.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> 6760 Ayala Ave,
-                        Makati City, 1226 Metro Manila (Hybrid)</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
-                        <li>Enhanced and maintained the Bureau of Internal Revenue (BIR) ePERA application, improving
-                            system functionality and usability across users.</li>
-                        <li>Resolved UAT-critical issues in the BIR DEM and eServices forms, ensuring system stability
-                            and production readiness.</li>
-                        <li>Investigated and resolved cross-layer defects involving frontend interfaces, backend
-                            services, and database queries, improving overall application reliability.</li>
-                        <li>Developed enterprise applications using OutSystems, including payroll automation, probation
-                            tracking, and procurement workflows, implementing business logic and process automation for
-                            internal operations.</li>
-                        <li>Collaborated with QA testers, designers, and project managers in Agile sprints to deliver
-                            compliant, high-quality enterprise applications.</li>
-                    </ul>
-                </div>
+                </details>
             </div>
 
             <!-- Direct Sourcing Solutions - Full Time -->
             <div class="relative pl-6 md:pl-8 group reveal">
                 <span
-                    class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
-                <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">Junior Software Developer</h3>
-                            <h4 class="text-indigo-600 font-semibold text-sm">Direct Sourcing Solutions</h4>
+                    class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-indigo-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform z-10"></span>
+
+                <details
+                    class="cream-card cream-card-hover rounded-2xl group/accordion overflow-hidden transition-all duration-300">
+                    <summary class="p-6 md:p-8 cursor-pointer list-none select-none">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between sm:justify-start gap-3">
+                                    <h3 class="text-xl font-bold text-slate-800">Junior Software Developer</h3>
+                                    <span
+                                        class="w-7 h-7 rounded-full bg-slate-100 group-hover/accordion:bg-indigo-50 flex items-center justify-center text-slate-500 group-hover/accordion:text-indigo-600 transition-colors">
+                                        <i
+                                            class="fa-solid fa-chevron-down text-xs transition-transform duration-300 group-open/accordion:rotate-180"></i>
+                                    </span>
+                                </div>
+                                <h4 class="text-indigo-600 font-semibold text-sm mt-0.5">Direct Sourcing Solutions</h4>
+                            </div>
+                            <span
+                                class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit shrink-0">
+                                Jun 2022 - Mar 2023
+                            </span>
                         </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jun
-                            2022 - Mar 2023</span>
+                        <p class="text-xs text-slate-400 mt-2">
+                            <i class="fa-solid fa-location-dot"></i> Clark, Pampanga (Remote)
+                        </p>
+                    </summary>
+
+                    <!-- Animated Grid Content Wrapper -->
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="px-6 pb-6 md:px-8 md:pb-8 pt-0 border-t border-slate-100/80">
+                                <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed mt-4">
+                                    <li>Developed and maintained responsive web applications aligned with business
+                                        requirements, ensuring cross-browser compatibility and mobile responsiveness
+                                        across devices.</li>
+                                    <li>Enhanced UI components using CSS and JavaScript, improving user interaction flow
+                                        and reducing reported UI defects during testing.</li>
+                                    <li>Designed wireframes and interactive prototypes in Figma to streamline
+                                        stakeholder feedback and accelerate feature validation.</li>
+                                    <li>Participated in Agile sprints, managing tasks in Jira and consistently
+                                        delivering features within defined timelines.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga
-                        (Remote)</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
-                        <li>Developed and maintained responsive web applications aligned with business requirements,
-                            ensuring cross-browser compatibility and mobile responsiveness across devices.</li>
-                        <li>Enhanced UI components using CSS and JavaScript, improving user interaction flow and
-                            reducing reported UI defects during testing.</li>
-                        <li>Designed wireframes and interactive prototypes in Figma to streamline stakeholder feedback
-                            and accelerate feature validation.</li>
-                        <li>Participated in Agile sprints, managing tasks in Jira and consistently delivering features
-                            within defined timelines.</li>
-                    </ul>
-                </div>
+                </details>
             </div>
 
             <!-- Direct Sourcing Solutions - Intern -->
             <div class="relative pl-6 md:pl-8 group reveal">
                 <span
-                    class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
-                <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">Junior Software Developer (Intern)</h3>
-                            <h4 class="text-slate-600 font-semibold text-sm">Direct Sourcing Solutions</h4>
+                    class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-slate-400 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform z-10"></span>
+
+                <details
+                    class="cream-card cream-card-hover rounded-2xl group/accordion overflow-hidden transition-all duration-300">
+                    <summary class="p-6 md:p-8 cursor-pointer list-none select-none">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between sm:justify-start gap-3">
+                                    <h3 class="text-xl font-bold text-slate-800">Junior Software Developer (Intern)</h3>
+                                    <span
+                                        class="w-7 h-7 rounded-full bg-slate-100 group-hover/accordion:bg-slate-200 flex items-center justify-center text-slate-500 group-hover/accordion:text-slate-700 transition-colors">
+                                        <i
+                                            class="fa-solid fa-chevron-down text-xs transition-transform duration-300 group-open/accordion:rotate-180"></i>
+                                    </span>
+                                </div>
+                                <h4 class="text-slate-600 font-semibold text-sm mt-0.5">Direct Sourcing Solutions</h4>
+                            </div>
+                            <span
+                                class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit shrink-0">
+                                Jan 2022 - Jun 2022
+                            </span>
                         </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jan
-                            2022 - Jun 2022</span>
+                        <p class="text-xs text-slate-400 mt-2">
+                            <i class="fa-solid fa-location-dot"></i> Clark, Pampanga (Remote)
+                        </p>
+                    </summary>
+
+                    <!-- Animated Grid Content Wrapper -->
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="px-6 pb-6 md:px-8 md:pb-8 pt-0 border-t border-slate-100/80">
+                                <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed mt-4">
+                                    <li>Developed training applications using the OutSystems platform, implementing
+                                        basic business logic and responsive UI components.</li>
+                                    <li>Created wireframes and prototypes in Figma to support feature design and
+                                        feedback.</li>
+                                    <li>Collaborated with developers in an Agile environment, assisting with testing and
+                                        issue resolution.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga
-                        (Remote)</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
-                        <li>Developed training applications using the OutSystems platform, implementing basic business
-                            logic and responsive UI components.</li>
-                        <li>Created wireframes and prototypes in Figma to support feature design and feedback.</li>
-                        <li>Collaborated with developers in an Agile environment, assisting with testing and issue
-                            resolution.</li>
-                    </ul>
-                </div>
+                </details>
             </div>
 
         </div>
@@ -566,7 +348,7 @@
     <!-- SECTION 4: PROJECTS -->
     <section id="projects" class="max-w-6xl mx-auto px-6 py-16 reveal">
         <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">
-            Personal <span class="gradient-text">Projects</span>
+            Some of my Personal <span class="gradient-text">Projects</span>
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -597,8 +379,8 @@
                             Code
                         </a>
                         <a href="https://chat-hazel-three-68.vercel.app/" target="_blank"
-                            class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
-                            Demo
+                            class="flex-1 text-center py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 text-xs font-semibold transition-all shadow-sm">
+                            Link
                         </a>
                     </div>
                 </div>
@@ -632,8 +414,8 @@
                             Code
                         </a>
                         <a href="https://swift-cv-xi.vercel.app/" target="_blank"
-                            class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
-                            Demo
+                            class="flex-1 text-center py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 text-xs font-semibold transition-all shadow-sm">
+                            Link
                         </a>
                     </div>
                 </div>
@@ -664,8 +446,8 @@
                             Code
                         </a>
                         <a href="https://job-application-tracker-ten-beta.vercel.app/" target="_blank"
-                            class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
-                            Demo
+                            class="flex-1 text-center py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800 text-xs font-semibold transition-all shadow-sm">
+                            Link
                         </a>
                     </div>
                 </div>
@@ -681,7 +463,7 @@
         </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 text-xl flex-shrink-0">
                     <i class="fa-solid fa-certificate"></i>
@@ -691,7 +473,7 @@
                     <p class="text-xs text-slate-500">MongoDB • 2026</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
                     <i class="fa-solid fa-certificate"></i>
@@ -701,7 +483,7 @@
                     <p class="text-xs text-slate-500">Vantiq • 2026</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
                     <i class="fa-brands fa-microsoft"></i>
@@ -711,7 +493,7 @@
                     <p class="text-xs text-slate-500">Microsoft • 2025</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0">
                     <i class="fa-solid fa-layer-group"></i>
@@ -721,7 +503,7 @@
                     <p class="text-xs text-slate-500">OutSystems • 2024</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0">
                     <i class="fa-solid fa-layer-group"></i>
@@ -731,7 +513,7 @@
                     <p class="text-xs text-slate-500">OutSystems • 2024</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0">
                     <i class="fa-solid fa-layer-group"></i>
@@ -741,7 +523,7 @@
                     <p class="text-xs text-slate-500">OutSystems • 2023</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
                     <i class="fa-brands fa-meta"></i>
@@ -751,7 +533,7 @@
                     <p class="text-xs text-slate-500">Meta • 2022</p>
                 </div>
             </div>
-            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+            <div class="cream-card p-4 rounded-xl flex items-center gap-4 reveal">
                 <div
                     class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
                     <i class="fa-brands fa-meta"></i>
@@ -772,7 +554,7 @@
                 opportunities.</p>
 
             <a href="mailto:jayplought@gmail.com"
-                class="inline-flex items-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all text-lg transform hover:-translate-y-1">
+                class="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-4 rounded-xl shadow-md hover:shadow-lg transition-all text-lg transform hover:-translate-y-1">
                 <i class="fa-solid fa-envelope"></i> Send Email
             </a>
         </div>
@@ -791,7 +573,7 @@
             </div>
             <!-- Toggle Button -->
             <button id="chat-toggle"
-                class="relative group bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-600 hover:to-purple-700 text-white px-4 h-14 rounded-full shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none">
+                class="relative group bg-slate-900 hover:bg-slate-800 text-white px-4 h-14 rounded-full shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none">
                 <!-- AI Bot Icon -->
                 <i id="chat-icon-open" class="fa-solid fa-robot text-xl transition-transform group-hover:rotate-12"></i>
 
@@ -813,7 +595,7 @@
                     <div class="relative">
                         <div
                             class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs  overflow-hidden">
-                            <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
+                            <i id="chat-icon-open" class="fa-solid fa-robot text-xl"></i>
                         </div>
                         <span
                             class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
@@ -849,7 +631,7 @@
                 <div class="flex gap-2.5 max-w-[85%]">
                     <div
                         class="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 overflow-hidden border border-sky-200">
-                        <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
+                        <i id="chat-icon-open" class="fa-solid fa-robot text-xl"></i>
                     </div>
                     <div
                         class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
@@ -871,225 +653,8 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script>
-        // Function to toggle maximized/expanded modal view
-        function toggleMaximize() {
-            const chatWindow = document.getElementById('chat-window');
-            const maxIcon = document.getElementById('maxIcon');
-
-            if (!chatWindow) return;
-
-            chatWindow.classList.toggle('maximized');
-
-            if (maxIcon) {
-                if (chatWindow.classList.contains('maximized')) {
-                    maxIcon.classList.remove('fa-expand');
-                    maxIcon.classList.add('fa-compress');
-                } else {
-                    maxIcon.classList.remove('fa-compress');
-                    maxIcon.classList.add('fa-expand');
-                }
-            }
-        }
-        // BACKEND RENDER ENDPOINT CONFIGURATION
-        const BACKEND_URL = "https://chat-6t0g.onrender.com/ask/stream";
-
-        // Optional default database name if expected by your RAG backend
-        const DEFAULT_DB_NAME = "AboutMe_chunks";
-
-        // In-memory conversation history array
-        let conversationHistory = [];
-
-        // Mouse light effect
-        document.addEventListener('mousemove', (e) => {
-            const cursorLight = document.querySelector('.cursor-light');
-            if (cursorLight) {
-                cursorLight.style.setProperty('--mouse-x', `${e.clientX}px`);
-                cursorLight.style.setProperty('--mouse-y', `${e.clientY}px`);
-            }
-        });
-
-        // Scroll reveal logic
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Chatbot Widget Functionality
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const chatCloseBtn = document.getElementById('chat-close-btn');
-        const chatIconOpen = document.getElementById('chat-icon-open');
-        const chatIconClose = document.getElementById('chat-icon-close');
-        const chatForm = document.getElementById('chat-form');
-        const chatInput = document.getElementById('chat-input');
-        const chatMessages = document.getElementById('chat-messages');
-
-        function toggleChat() {
-            chatWindow.classList.toggle('hidden');
-            chatIconOpen.classList.toggle('hidden');
-            chatIconClose.classList.toggle('hidden');
-            if (!chatWindow.classList.contains('hidden')) {
-                chatInput.focus();
-            }
-        }
-
-        if (chatToggle) chatToggle.addEventListener('click', toggleChat);
-        if (chatCloseBtn) chatCloseBtn.addEventListener('click', toggleChat);
-
-        function appendMessage(sender, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = sender === 'user'
-                ? 'flex justify-end'
-                : 'flex gap-2.5 max-w-[85%]';
-
-            if (sender === 'user') {
-                msgDiv.innerHTML = `
-                    <div class="bg-sky-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-xs leading-relaxed max-w-[85%]">
-                        ${escapeHTML(text)}
-                    </div>
-                `;
-            } else {
-                msgDiv.innerHTML = `
-                    <div class="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 overflow-hidden border border-sky-200">
-                        <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
-                    </div>
-                    <div class="msg-content bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
-                        ${text}
-                    </div>
-                `;
-            }
-
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return msgDiv;
-        }
-
-        function showTypingIndicator() {
-            const typingDiv = document.createElement('div');
-            typingDiv.id = 'typing-indicator';
-            typingDiv.className = 'flex gap-2.5 max-w-[85%]';
-            typingDiv.innerHTML = `
-                    <div class="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 overflow-hidden border border-sky-200">
-                        <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
-                    </div>
-                    <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
-                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
-                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
-                    </div>
-                `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typing-indicator');
-            if (indicator) indicator.remove();
-        }
-
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g,
-                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-            );
-        }
-
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const message = chatInput.value.trim();
-            if (!message) return;
-
-            // Render user bubble
-            appendMessage('user', message);
-            chatInput.value = '';
-            showTypingIndicator();
-
-            try {
-                // Match exact backend payload schema (question, db_name, history)
-                const payload = {
-                    question: message,
-                    db_name: DEFAULT_DB_NAME,
-                    history: conversationHistory
-                };
-
-                const response = await fetch(BACKEND_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Server returned HTTP ${response.status}`);
-                }
-
-                removeTypingIndicator();
-
-                // Create AI message container to stream content into
-                const aiMsgElement = appendMessage('ai', '');
-                const contentContainer = aiMsgElement.querySelector('.msg-content');
-
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-                let fullResponseText = '';
-                let buffer = '';
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    buffer += decoder.decode(value, { stream: true });
-                    const lines = buffer.split('\n');
-                    buffer = lines.pop(); // Hold onto incomplete lines
-
-                    for (const line of lines) {
-                        const trimmed = line.trim();
-                        if (!trimmed) continue;
-
-                        let chunkText = '';
-                        if (trimmed.startsWith('data:')) {
-                            const dataContent = trimmed.replace(/^data:\s*/, '');
-                            if (dataContent === '[DONE]') continue;
-                            try {
-                                const parsed = JSON.parse(dataContent);
-                                chunkText = parsed.content || parsed.text || parsed.answer || parsed.delta || dataContent;
-                            } catch (_) {
-                                chunkText = dataContent;
-                            }
-                        } else {
-                            chunkText = trimmed;
-                        }
-
-                        fullResponseText += chunkText;
-                        contentContainer.innerText = fullResponseText;
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }
-                }
-
-                // If any lingering buffer remains
-                if (buffer.trim()) {
-                    const cleanBuffer = buffer.replace(/^data:\s*/, '');
-                    fullResponseText += cleanBuffer;
-                    contentContainer.innerText = fullResponseText;
-                }
-
-                // Update session history for future follow-up turns
-                conversationHistory.push({ role: 'user', content: message });
-                conversationHistory.push({ role: 'assistant', content: fullResponseText });
-
-            } catch (err) {
-                removeTypingIndicator();
-                console.error("Chatbot Stream Error:", err);
-                appendMessage('ai', 'Sorry, I could not connect to the backend server.');
-            }
-        });
-    </script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
 </body>
 
 </html>
