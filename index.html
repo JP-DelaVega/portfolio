@@ -237,6 +237,17 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+
+        /* Chat Typing Indicator Dots */
+        .typing-dot {
+            animation: typingBounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
     </style>
 </head>
 <body class="relative">
@@ -449,7 +460,7 @@
         </div>
     </section>
 
-    <!-- SECTION 4: PROJECTS (MOVED BEFORE CERTIFICATIONS & TAGS REMOVED) -->
+    <!-- SECTION 4: PROJECTS -->
     <section id="projects" class="max-w-6xl mx-auto px-6 py-16 reveal">
         <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">
             Personal <span class="gradient-text">Projects</span>
@@ -580,61 +591,195 @@
         </div>
     </section>
 
-    <!-- SECTION 6: CONTACT -->
-    <section id="contact" class="max-w-4xl mx-auto px-6 py-16 mb-20 reveal">
-        <div class="cream-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-slate-200">
-            <h2 class="text-3xl font-bold mb-4 text-slate-800">Let's Connect</h2>
-            <p class="text-slate-600 mb-8 max-w-md mx-auto">Open to discussing Full-Stack, Low-Code, or AI Engineering opportunities.</p>
-            
-            <a href="mailto:jayplought@gmail.com" class="inline-flex items-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all text-lg transform hover:-translate-y-1">
-                <i class="fa-solid fa-envelope"></i> Send Email
-            </a>
-        </div>
-    </section>
+    <!-- FLOATING CHATBOT WIDGET -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Toggle Button -->
+        <button id="chat-toggle" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl transition-all transform hover:scale-105 active:scale-95 focus:outline-none">
+            <i id="chat-icon-open" class="fa-solid fa-comments"></i>
+            <i id="chat-icon-close" class="fa-solid fa-xmark hidden"></i>
+        </button>
 
-    <!-- FLOATING CONTACT BUTTON -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <a href="mailto:jayplought@gmail.com" class="cream-card text-slate-800 px-5 py-3 rounded-full flex items-center gap-3 shadow-xl transition-all border border-slate-200 hover:scale-105">
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-            </span>
-            <i class="fa-solid fa-envelope text-sky-600"></i>
-            <span class="text-sm font-semibold">jayplought@gmail.com</span>
-        </a>
+        <!-- Chat Container Window -->
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-[90vw] sm:w-[380px] h-[520px] cream-card rounded-2xl flex flex-col shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
+            <!-- Header -->
+            <div class="p-4 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center font-bold text-white text-sm shadow-inner">
+                            AI
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-sm leading-tight">JP's AI Assistant</h3>
+                        <p class="text-[11px] text-slate-300">Ask anything about my experience</p>
+                    </div>
+                </div>
+                <button id="chat-close-btn" class="text-slate-400 hover:text-white text-lg p-1 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
+                <!-- Initial Welcome Message -->
+                <div class="flex gap-2.5 max-w-[85%]">
+                    <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
+                        AI
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
+                        Hello! 👋 I'm JP's AI assistant. Ask me anything about his skills, experience, or projects!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Form -->
+            <form id="chat-form" class="p-3 bg-white/80 border-t border-slate-200 flex items-center gap-2">
+                <input type="text" id="chat-input" placeholder="Type a message..." required class="flex-1 bg-slate-100 border border-slate-200 text-slate-800 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all">
+                <button type="submit" id="chat-submit" class="bg-sky-600 hover:bg-sky-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition-all flex-shrink-0 shadow-sm">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+        </div>
     </div>
 
-    <footer class="text-center py-6 text-xs text-slate-500 border-t border-slate-200">
-        &copy; 2026 John Philip Dela Vega.
-    </footer>
-
-    <!-- INTERACTION & SCROLL REVEAL SCRIPT -->
+    <!-- SCRIPTS -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Scroll reveal animation
-            const reveals = document.querySelectorAll(".reveal");
+        // BACKEND RENDER ENDPOINT CONFIGURATION
+        // REPLACE THIS STRING WITH YOUR ACTUAL RENDER BACKEND ENDPOINT URL
+        // Example: 'https://your-app-name.onrender.com/api/chat'
+        const BACKEND_URL = 'https://chat-6t0g.onrender.com//ask/stream';
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("active");
-                    }
+        // Mouse light effect
+        document.addEventListener('mousemove', (e) => {
+            const cursorLight = document.querySelector('.cursor-light');
+            if (cursorLight) {
+                cursorLight.style.setProperty('--mouse-x', `${e.clientX}px`);
+                cursorLight.style.setProperty('--mouse-y', `${e.clientY}px`);
+            }
+        });
+
+        // Scroll reveal logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Chatbot Widget Functionality
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatCloseBtn = document.getElementById('chat-close-btn');
+        const chatIconOpen = document.getElementById('chat-icon-open');
+        const chatIconClose = document.getElementById('chat-icon-close');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        function toggleChat() {
+            chatWindow.classList.toggle('hidden');
+            chatIconOpen.classList.toggle('hidden');
+            chatIconClose.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                chatInput.focus();
+            }
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        chatCloseBtn.addEventListener('click', toggleChat);
+
+        function appendMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'user' 
+                ? 'flex justify-end' 
+                : 'flex gap-2.5 max-w-[85%]';
+
+            if (sender === 'user') {
+                msgDiv.innerHTML = `
+                    <div class="bg-sky-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-xs leading-relaxed max-w-[85%]">
+                        ${escapeHTML(text)}
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
+                        AI
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
+                        ${text}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return msgDiv;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.className = 'flex gap-2.5 max-w-[85%]';
+            typingDiv.innerHTML = `
+                <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
+                    AI
+                </div>
+                <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
+                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
+                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            appendMessage('user', message);
+            chatInput.value = '';
+            showTypingIndicator();
+
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            });
 
-            reveals.forEach((element) => {
-                observer.observe(element);
-            });
+                removeTypingIndicator();
 
-            // Interactive Spotlight Effect
-            const light = document.querySelector('.cursor-light');
-            window.addEventListener('mousemove', (e) => {
-                light.style.setProperty('--mouse-x', `${e.clientX}px`);
-                light.style.setProperty('--mouse-y', `${e.clientY}px`);
-            });
+                if (!response.ok) {
+                    throw new Error('Server returned an error status.');
+                }
+
+                const data = await response.json();
+                const reply = data.reply || data.response || data.message || "I received your message successfully!";
+                appendMessage('ai', reply);
+
+            } catch (err) {
+                removeTypingIndicator();
+                appendMessage('ai', 'Sorry, I could not connect to the backend server. Please make sure the backend endpoint URL is configured correctly.');
+            }
         });
     </script>
 </body>
