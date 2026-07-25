@@ -646,9 +646,7 @@
     <!-- SCRIPTS -->
     <script>
         // BACKEND RENDER ENDPOINT CONFIGURATION
-        // REPLACE THIS STRING WITH YOUR ACTUAL RENDER BACKEND ENDPOINT URL
-        // Example: 'https://your-app-name.onrender.com/api/chat'
-        const BACKEND_URL = 'https://chat-6t0g.onrender.com//ask/stream';
+        const BACKEND_URL = 'https://chat-6t0g.onrender.com/ask/stream';
 
         // Mouse light effect
         document.addEventListener('mousemove', (e) => {
@@ -690,8 +688,8 @@
             }
         }
 
-        chatToggle.addEventListener('click', toggleChat);
-        chatCloseBtn.addEventListener('click', toggleChat);
+        if (chatToggle) chatToggle.addEventListener('click', toggleChat);
+        if (chatCloseBtn) chatCloseBtn.addEventListener('click', toggleChat);
 
         function appendMessage(sender, text) {
             const msgDiv = document.createElement('div');
@@ -710,7 +708,7 @@
                     <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
                         AI
                     </div>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
+                    <div class="msg-content bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
                         ${text}
                     </div>
                 `;
@@ -763,24 +761,50 @@
                 const response = await fetch(BACKEND_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message })
+                    body: JSON.stringify({ question: message }) // Send "question" to match API body
                 });
+
+                if (!response.ok) {
+                    throw new Error(`Server error (${response.status})`);
+                }
 
                 removeTypingIndicator();
 
-                if (!response.ok) {
-                    throw new Error('Server returned an error status.');
-                }
+                const contentType = response.headers.get('content-type') || '';
 
-                const data = await response.json();
-                const reply = data.reply || data.response || data.message || "I received your message successfully!";
-                appendMessage('ai', reply);
+                if (contentType.includes('text/event-stream') || response.body) {
+                    const aiMsgElement = appendMessage('ai', '');
+                    const contentContainer = aiMsgElement.querySelector('.msg-content');
+                    
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    let fullText = '';
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        const chunk = decoder.decode(value, { stream: true });
+                        // Clean SSE prefix if present
+                        const cleanChunk = chunk.replace(/^data:\s*/gm, ''); 
+                        fullText += cleanChunk;
+                        
+                        contentContainer.innerText = fullText;
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+                } else {
+                    // JSON Fallback
+                    const data = await response.json();
+                    const reply = data.reply || data.response || data.answer || data.message || "Received response.";
+                    appendMessage('ai', reply);
+                }
 
             } catch (err) {
                 removeTypingIndicator();
-                appendMessage('ai', 'Sorry, I could not connect to the backend server. Please make sure the backend endpoint URL is configured correctly.');
+                console.error("Chat Error:", err);
+                appendMessage('ai', 'Sorry, I could not connect to the backend server. Please check your connection or endpoint.');
             }
         });
-    </script>
+</script>
 </body>
 </html>
