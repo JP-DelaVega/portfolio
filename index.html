@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Philip Dela Vega | Full-Stack & AI Developer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7f6f3; /* Dirty White / Off-White */
+            color: #1e293b; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ENHANCED BACKGROUND EFFECTS --- */
+        
+        /* Interactive Spot Light Follower */
+        .cursor-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.08), transparent 80%);
+            transition: background 0.15s ease-out;
+        }
+
+        /* Ambient Glowing Background Orbs */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.45;
+            z-index: -3;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            background: #38bdf8;
+            top: -100px;
+            left: -100px;
+            animation: float-1 18s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: #818cf8;
+            top: 35%;
+            right: -150px;
+            animation: float-2 22s ease-in-out infinite alternate;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: #34d399;
+            bottom: 5%;
+            left: -100px;
+            animation: float-3 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes float-1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(120px, 80px) scale(1.15); }
+        }
+
+        @keyframes float-2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-100px, 120px) scale(1.1); }
+        }
+
+        @keyframes float-3 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, -100px) scale(1.2); }
+        }
+
+        /* Faint Tech Grid Pattern */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(203, 213, 225, 0.25) 0%, rgba(247, 246, 243, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- CARD & UI EFFECTS --- */
+
+        .cream-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .cream-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+            transition: left 0.8s ease;
+            pointer-events: none;
+        }
+
+        .cream-card:hover::before {
+            left: 150%;
+        }
+
+        .cream-card-hover:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-8px) scale(1.015) !important;
+            box-shadow: 0 20px 40px rgba(2, 132, 199, 0.12), 0 8px 18px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Blink Shiny Green Badge */
+        @keyframes shiny-pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.6);
+            }
+        }
+        .shiny-green-badge {
+            animation: shiny-pulse 2s infinite;
+        }
+
+        /* Scroll Reveal Effect Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-tag {
+            background-color: #f1f5f9; 
+            color: #334155; 
+            padding: 0.35rem 0.85rem; 
+            border-radius: 0.5rem; 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background-color: #0284c7;
+            color: #ffffff;
+            transform: translateY(-2px) scale(1.05);
+            border-color: #0284c7;
+            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.25);
+        }
+
+        .tech-tag {
+            font-size: 11px; 
+            background-color: #f1f5f9; 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 0.25rem; 
+            color: #475569; 
+            border: 1px solid #e2e8f0;
+            font-weight: 500;
+        }
+
+        nav a {
+            transition: 0.3s ease;
+        }
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        button, a {
+            transition: all 0.3s ease;
+        }
+        a:active, button:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f6f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- BACKGROUND EFFECTS CONTAINERS -->
+    <div class="cursor-light"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="page-overlay"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 cream-card px-4 py-2 rounded-full flex items-center gap-2 text-sm font-semibold shadow-lg border border-slate-200">
+        <a href="#hero" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Home</a>
+        <a href="#skills" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Skills</a>
+        <a href="#experience" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Experience</a>
+        <a href="#projects" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Projects</a>
+        <a href="#certifications" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Certs</a>
+    </nav>
+
+    <!-- SECTION 1: HERO -->
+    <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-emerald-700 font-bold text-xs mb-6 border border-emerald-200/80 bg-white/60 backdrop-blur-sm shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 -ml-5"></span>
+            Open to New Opportunities
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">
+            Hi, I'm <span class="gradient-text">John Philip Dela Vega</span>
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mb-8 leading-relaxed font-normal">
+            Software Engineer with <strong class="text-slate-800 font-semibold">4 years of professional experience</strong> in Full-Stack Development and enterprise Low-Code platforms. I build scalable, user-focused applications, solve complex cross-layer challenges, and am expanding my expertise into AI development by creating intelligent, LLM-powered solutions.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+            <a href="https://github.com/JP-DelaVega" target="_blank" class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
+                <i class="fa-brands fa-github text-xl"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/john-philip-dela-vega-29b51820a/" target="_blank" class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
+                <i class="fa-brands fa-linkedin text-xl text-sky-600"></i> LinkedIn
+            </a>
+            <a href="https://drive.google.com/file/d/1DGsi3e8qe8RvruaejQ18kngxVT55_F2m/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-xl transition-all flex items-center gap-2 transform hover:-translate-y-1">
+                <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SKILLS -->
+    <section id="skills" class="max-w-6xl mx-auto px-6 py-16 reveal">
+        <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">
+            Technical <span class="gradient-text">Skills</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+                <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-3 text-slate-800">Languages</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+                <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-3 text-slate-800">Frontend</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                </div>
+            </div>
+
+            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+                <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-3 text-slate-800">Backend & DB</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Oracle</span>
+                </div>
+            </div>
+
+            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 text-xl mb-4">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-3 text-slate-800">AI & Data</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">RAG Systems</span>
+                    <span class="skill-tag">LLM Integration</span>
+                    <span class="skill-tag">Tool Calling</span>
+                </div>
+            </div>
+
+            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+                <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-3 text-slate-800">Low-Code</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">OutSystems</span>
+                    <span class="skill-tag">Vantiq</span>
+                </div>
+            </div>
+
+            <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
+                <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl mb-4">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-3 text-slate-800">Cloud & DevOps</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Microsoft Azure</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">Jira</span>
+                    <span class="skill-tag">Figma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: WORK EXPERIENCE -->
+    <section id="experience" class="max-w-5xl mx-auto px-6 py-16 reveal">
+        <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">
+            Work <span class="gradient-text">Experience</span>
+        </h2>
+
+        <div class="relative border-l-2 border-slate-200/80 ml-4 md:ml-8 space-y-12">
+            
+            <!-- SGV & Co. -->
+            <div class="relative pl-6 md:pl-8 group reveal">
+                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
+                <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Staff, Technology Consultant</h3>
+                            <h4 class="text-sky-600 font-semibold text-sm">SGV & Co.</h4>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Apr 2023 - Present</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> 6760 Ayala Ave, Makati City, 1226 Metro Manila (Hybrid)</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
+                        <li>Enhanced and maintained the Bureau of Internal Revenue (BIR) ePERA application, improving system functionality and usability across users.</li>
+                        <li>Resolved UAT-critical issues in the BIR DEM application, ensuring system stability and production readiness.</li>
+                        <li>Investigated and resolved cross-layer defects involving frontend interfaces, backend services, and database queries, improving overall application reliability.</li>
+                        <li>Developed enterprise applications using OutSystems, including payroll automation, probation tracking, and procurement workflows, implementing business logic and process automation for internal operations.</li>
+                        <li>Collaborated with QA testers, designers, and project managers in Agile sprints to deliver compliant, high-quality enterprise applications.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Direct Sourcing Solutions - Full Time -->
+            <div class="relative pl-6 md:pl-8 group reveal">
+                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
+                <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Junior Software Developer</h3>
+                            <h4 class="text-indigo-600 font-semibold text-sm">Direct Sourcing Solutions</h4>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jun 2022 - Mar 2023</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga (Remote)</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
+                        <li>Developed and maintained responsive web applications aligned with business requirements, ensuring cross-browser compatibility and mobile responsiveness across devices.</li>
+                        <li>Enhanced UI components using CSS and JavaScript, improving user interaction flow and reducing reported UI defects during testing.</li>
+                        <li>Designed wireframes and interactive prototypes in Figma to streamline stakeholder feedback and accelerate feature validation.</li>
+                        <li>Participated in Agile sprints, managing tasks in Jira and consistently delivering features within defined timelines.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Direct Sourcing Solutions - Intern -->
+            <div class="relative pl-6 md:pl-8 group reveal">
+                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
+                <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Junior Software Developer (Intern)</h3>
+                            <h4 class="text-slate-600 font-semibold text-sm">Direct Sourcing Solutions</h4>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jan 2022 - Jun 2022</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga (Remote)</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
+                        <li>Developed training applications using the OutSystems platform, implementing basic business logic and responsive UI components.</li>
+                        <li>Created wireframes and prototypes in Figma to support feature design and feedback.</li>
+                        <li>Collaborated with developers in an Agile environment, assisting with testing and issue resolution.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: PROJECTS (MOVED BEFORE CERTIFICATIONS & TAGS REMOVED) -->
+    <section id="projects" class="max-w-6xl mx-auto px-6 py-16 reveal">
+        <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">
+            Personal <span class="gradient-text">Projects</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- RAG System -->
+            <div class="cream-card cream-card-hover rounded-2xl overflow-hidden flex flex-col group reveal">
+                <div class="h-48 bg-slate-100 relative overflow-hidden border-b border-slate-200">
+                    <img src="rag.png" alt="RAG System Screenshot" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">RAG System</h3>
+                        <p class="text-slate-600 text-sm mb-4">Retrieval-Augmented Generation application for querying context-aware document datasets.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">Gemini Embedding</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-4 border-t border-slate-100">
+                        <a href="https://github.com/JP-DelaVega/chat.git" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
+                            Code
+                        </a>
+                        <a href="https://chat-hazel-three-68.vercel.app/" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
+                            Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SwiftCV -->
+            <div class="cream-card cream-card-hover rounded-2xl overflow-hidden flex flex-col group reveal">
+                <div class="h-48 bg-slate-100 relative overflow-hidden border-b border-slate-200">
+                    <img src="swiftCV.png" alt="SwiftCV Screenshot" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">SwiftCV</h3>
+                        <p class="text-slate-600 text-sm mb-4">AI-powered resume builder with predefined templates that leverages LLMs to generate personalized resume layouts and includes an ATS score checker to help optimize resumes for applicant tracking systems.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Gemini LLM</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-4 border-t border-slate-100">
+                        <a href="https://github.com/JP-DelaVega/SwiftCV.git" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
+                            Code
+                        </a>
+                        <a href="https://swift-cv-xi.vercel.app/" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
+                            Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Application Tracker / PocketTrack -->
+            <div class="cream-card cream-card-hover rounded-2xl overflow-hidden flex flex-col group reveal">
+                <div class="h-48 bg-slate-100 relative overflow-hidden border-b border-slate-200">
+                    <img src="pocketTrack.png" alt="Job Application Tracker Screenshot" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">Job Application Tracker</h3>
+                        <p class="text-slate-600 text-sm mb-4">Job application pipeline tracker paired with an AI module for practice interview preparation.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Gemini LLM</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-4 border-t border-slate-100">
+                        <a href="https://github.com/JP-DelaVega/Job-Application-Tracker.git" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
+                            Code
+                        </a>
+                        <a href="https://job-application-tracker-ten-beta.vercel.app/" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
+                            Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: CERTIFICATIONS -->
+    <section id="certifications" class="max-w-5xl mx-auto px-6 py-16 mb-12 reveal">
+        <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">
+            Certifications & <span class="gradient-text">Credentials</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 text-xl flex-shrink-0"><i class="fa-solid fa-certificate"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Building GenAI Applications with MongoDB</h4><p class="text-xs text-slate-500">MongoDB • 2026</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-solid fa-certificate"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Event-Driven Applications Foundations Course</h4><p class="text-xs text-slate-500">Vantiq • 2026</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-brands fa-microsoft"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Microsoft Certified: Azure Fundamentals</h4><p class="text-xs text-slate-500">Microsoft • 2025</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Front-end Developer Specialist (OutSystems 11)</h4><p class="text-xs text-slate-500">OutSystems • 2024</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Associate Developer (ODC)</h4><p class="text-xs text-slate-500">OutSystems • 2024</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Associate Reactive Developer (OutSystems 11)</h4><p class="text-xs text-slate-500">OutSystems • 2023</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-brands fa-meta"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">HTML and CSS in depth</h4><p class="text-xs text-slate-500">Meta • 2022</p></div>
+            </div>
+            <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
+                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-brands fa-meta"></i></div>
+                <div><h4 class="font-bold text-sm text-slate-800">Principles of UX/UI Design</h4><p class="text-xs text-slate-500">Meta • 2022</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: CONTACT -->
+    <section id="contact" class="max-w-4xl mx-auto px-6 py-16 mb-20 reveal">
+        <div class="cream-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-slate-200">
+            <h2 class="text-3xl font-bold mb-4 text-slate-800">Let's Connect</h2>
+            <p class="text-slate-600 mb-8 max-w-md mx-auto">Open to discussing Full-Stack, Low-Code, or AI Engineering opportunities.</p>
+            
+            <a href="mailto:jayplought@gmail.com" class="inline-flex items-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all text-lg transform hover:-translate-y-1">
+                <i class="fa-solid fa-envelope"></i> Send Email
+            </a>
+        </div>
+    </section>
+
+    <!-- FLOATING CONTACT BUTTON -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="mailto:jayplought@gmail.com" class="cream-card text-slate-800 px-5 py-3 rounded-full flex items-center gap-3 shadow-xl transition-all border border-slate-200 hover:scale-105">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            <i class="fa-solid fa-envelope text-sky-600"></i>
+            <span class="text-sm font-semibold">jayplought@gmail.com</span>
+        </a>
+    </div>
+
+    <footer class="text-center py-6 text-xs text-slate-500 border-t border-slate-200">
+        &copy; 2026 John Philip Dela Vega.
+    </footer>
+
+    <!-- INTERACTION & SCROLL REVEAL SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Scroll reveal animation
+            const reveals = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach((element) => {
+                observer.observe(element);
+            });
+
+            // Interactive Spotlight Effect
+            const light = document.querySelector('.cursor-light');
+            window.addEventListener('mousemove', (e) => {
+                light.style.setProperty('--mouse-x', `${e.clientX}px`);
+                light.style.setProperty('--mouse-y', `${e.clientY}px`);
+            });
+        });
+    </script>
+</body>
+</html>
