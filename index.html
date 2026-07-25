@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,21 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f7f6f3; /* Dirty White / Off-White */
-            color: #1e293b; 
+            background-color: #f7f6f3;
+            /* Dirty White / Off-White */
+            color: #1e293b;
             overflow-x: hidden;
             position: relative;
         }
 
         /* --- ENHANCED BACKGROUND EFFECTS --- */
-        
+
         /* Interactive Spot Light Follower */
         .cursor-light {
             position: fixed;
@@ -74,18 +77,33 @@
         }
 
         @keyframes float-1 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(120px, 80px) scale(1.15); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(120px, 80px) scale(1.15);
+            }
         }
 
         @keyframes float-2 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-100px, 120px) scale(1.1); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(-100px, 120px) scale(1.1);
+            }
         }
 
         @keyframes float-3 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(80px, -100px) scale(1.2); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(80px, -100px) scale(1.2);
+            }
         }
 
         /* Faint Tech Grid Pattern */
@@ -96,7 +114,7 @@
             width: 100%;
             height: 100%;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -2;
             pointer-events: none;
@@ -156,13 +174,17 @@
 
         /* Blink Shiny Green Badge */
         @keyframes shiny-pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
             }
+
             50% {
                 box-shadow: 0 0 12px 4px rgba(34, 197, 94, 0.6);
             }
         }
+
         .shiny-green-badge {
             animation: shiny-pulse 2s infinite;
         }
@@ -181,15 +203,16 @@
         }
 
         .skill-tag {
-            background-color: #f1f5f9; 
-            color: #334155; 
-            padding: 0.35rem 0.85rem; 
-            border-radius: 0.5rem; 
-            font-size: 0.8rem; 
-            font-weight: 600; 
+            background-color: #f1f5f9;
+            color: #334155;
+            padding: 0.35rem 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
             border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
         }
+
         .skill-tag:hover {
             background-color: #0284c7;
             color: #ffffff;
@@ -199,11 +222,11 @@
         }
 
         .tech-tag {
-            font-size: 11px; 
-            background-color: #f1f5f9; 
-            padding: 0.2rem 0.6rem; 
-            border-radius: 0.25rem; 
-            color: #475569; 
+            font-size: 11px;
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.25rem;
+            color: #475569;
             border: 1px solid #e2e8f0;
             font-weight: 500;
         }
@@ -211,15 +234,19 @@
         nav a {
             transition: 0.3s ease;
         }
+
         nav a:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
         }
 
-        button, a {
+        button,
+        a {
             transition: all 0.3s ease;
         }
-        a:active, button:active {
+
+        a:active,
+        button:active {
             transform: scale(0.97);
         }
 
@@ -227,13 +254,16 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #f7f6f3;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
@@ -242,14 +272,51 @@
         .typing-dot {
             animation: typingBounce 1.4s infinite ease-in-out both;
         }
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
         @keyframes typingBounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* Maximized state for chatbot window */
+        /* Maximized state: anchored at bottom-right, expanded dimensions */
+        #chat-window {
+            /* Limit transition strictly to dimensions for a cleaner collapse */
+            transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                height 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        #chat-window.maximized {
+            width: 650px !important;
+            max-width: 90vw !important;
+            height: 80vh !important;
+            max-height: 800px !important;
+        }
+
+        #chat-toggle-wrapper:hover #chat-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+
         }
     </style>
 </head>
+
 <body class="relative">
     <!-- BACKGROUND EFFECTS CONTAINERS -->
     <div class="cursor-light"></div>
@@ -260,38 +327,52 @@
     <div class="page-overlay"></div>
 
     <!-- NAVBAR -->
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 cream-card px-4 py-2 rounded-full flex items-center gap-2 text-sm font-semibold shadow-lg border border-slate-200">
-        <a href="#hero" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Home</a>
-        <a href="#skills" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Skills</a>
-        <a href="#experience" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Experience</a>
-        <a href="#projects" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Projects</a>
-        <a href="#certifications" class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Certs</a>
+    <nav
+        class="fixed top-6 left-1/2 -translate-x-1/2 z-50 cream-card px-4 py-2 rounded-full flex items-center gap-2 text-sm font-semibold shadow-lg border border-slate-200">
+        <a href="#hero"
+            class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Home</a>
+        <a href="#skills"
+            class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Skills</a>
+        <a href="#experience"
+            class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Experience</a>
+        <a href="#projects"
+            class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Projects</a>
+        <a href="#certifications"
+            class="px-4 py-1.5 rounded-full hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all">Certs</a>
     </nav>
 
     <!-- SECTION 1: HERO -->
     <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 reveal">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-emerald-700 font-bold text-xs mb-6 border border-emerald-200/80 bg-white/60 backdrop-blur-sm shadow-sm">
+        <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-emerald-700 font-bold text-xs mb-6 border border-emerald-200/80 bg-white/60 backdrop-blur-sm shadow-sm">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 -ml-5"></span>
             Open to New Opportunities
         </div>
-        
+
         <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">
             Hi, I'm <span class="gradient-text">John Philip Dela Vega</span>
         </h1>
-        
+
         <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mb-8 leading-relaxed font-normal">
-            Software Engineer with <strong class="text-slate-800 font-semibold">4 years of professional experience</strong> in Full-Stack Development and enterprise Low-Code platforms. I build scalable, user-focused applications, solve complex cross-layer challenges, and am expanding my expertise into AI development by creating intelligent, LLM-powered solutions.
+            Software Engineer with <strong class="text-slate-800 font-semibold">4 years of professional
+                experience</strong> in Full-Stack Development and enterprise Low-Code platforms. I build scalable,
+            user-focused applications, solve complex cross-layer challenges, and am expanding my expertise into AI
+            development by creating intelligent, LLM-powered solutions.
         </p>
 
         <div class="flex flex-wrap justify-center gap-4 mb-16">
-            <a href="https://github.com/JP-DelaVega" target="_blank" class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
+            <a href="https://github.com/JP-DelaVega" target="_blank"
+                class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
                 <i class="fa-brands fa-github text-xl"></i> GitHub
             </a>
-            <a href="https://www.linkedin.com/in/john-philip-dela-vega-29b51820a/" target="_blank" class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
+            <a href="https://www.linkedin.com/in/john-philip-dela-vega-29b51820a/" target="_blank"
+                class="cream-card cream-card-hover px-6 py-3 rounded-xl transition-all flex items-center gap-2 font-semibold text-slate-700">
                 <i class="fa-brands fa-linkedin text-xl text-sky-600"></i> LinkedIn
             </a>
-            <a href="https://drive.google.com/file/d/1DGsi3e8qe8RvruaejQ18kngxVT55_F2m/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-xl transition-all flex items-center gap-2 transform hover:-translate-y-1">
+            <a href="https://drive.google.com/file/d/1DGsi3e8qe8RvruaejQ18kngxVT55_F2m/view?usp=sharing" target="_blank"
+                rel="noopener noreferrer"
+                class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-xl transition-all flex items-center gap-2 transform hover:-translate-y-1">
                 <i class="fa-solid fa-file-arrow-down"></i> Download Resume
             </a>
         </div>
@@ -348,7 +429,8 @@
             </div>
 
             <div class="cream-card cream-card-hover p-6 rounded-2xl reveal">
-                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 text-xl mb-4">
+                <div
+                    class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 text-xl mb-4">
                     <i class="fa-solid fa-brain"></i>
                 </div>
                 <h3 class="font-bold text-lg mb-3 text-slate-800">AI & Data</h3>
@@ -393,66 +475,87 @@
         </h2>
 
         <div class="relative border-l-2 border-slate-200/80 ml-4 md:ml-8 space-y-12">
-            
+
             <!-- SGV & Co. -->
             <div class="relative pl-6 md:pl-8 group reveal">
-                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
+                <span
+                    class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
                 <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
                         <div>
                             <h3 class="text-xl font-bold text-slate-800">Staff, Technology Consultant</h3>
                             <h4 class="text-sky-600 font-semibold text-sm">SGV & Co.</h4>
                         </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Apr 2023 - Present</span>
+                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Apr
+                            2023 - Present</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> 6760 Ayala Ave, Makati City, 1226 Metro Manila (Hybrid)</p>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> 6760 Ayala Ave,
+                        Makati City, 1226 Metro Manila (Hybrid)</p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
-                        <li>Enhanced and maintained the Bureau of Internal Revenue (BIR) ePERA application, improving system functionality and usability across users.</li>
-                        <li>Resolved UAT-critical issues in the BIR DEM application, ensuring system stability and production readiness.</li>
-                        <li>Investigated and resolved cross-layer defects involving frontend interfaces, backend services, and database queries, improving overall application reliability.</li>
-                        <li>Developed enterprise applications using OutSystems, including payroll automation, probation tracking, and procurement workflows, implementing business logic and process automation for internal operations.</li>
-                        <li>Collaborated with QA testers, designers, and project managers in Agile sprints to deliver compliant, high-quality enterprise applications.</li>
+                        <li>Enhanced and maintained the Bureau of Internal Revenue (BIR) ePERA application, improving
+                            system functionality and usability across users.</li>
+                        <li>Resolved UAT-critical issues in the BIR DEM application, ensuring system stability and
+                            production readiness.</li>
+                        <li>Investigated and resolved cross-layer defects involving frontend interfaces, backend
+                            services, and database queries, improving overall application reliability.</li>
+                        <li>Developed enterprise applications using OutSystems, including payroll automation, probation
+                            tracking, and procurement workflows, implementing business logic and process automation for
+                            internal operations.</li>
+                        <li>Collaborated with QA testers, designers, and project managers in Agile sprints to deliver
+                            compliant, high-quality enterprise applications.</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Direct Sourcing Solutions - Full Time -->
             <div class="relative pl-6 md:pl-8 group reveal">
-                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
+                <span
+                    class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
                 <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
                         <div>
                             <h3 class="text-xl font-bold text-slate-800">Junior Software Developer</h3>
                             <h4 class="text-indigo-600 font-semibold text-sm">Direct Sourcing Solutions</h4>
                         </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jun 2022 - Mar 2023</span>
+                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jun
+                            2022 - Mar 2023</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga (Remote)</p>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga
+                        (Remote)</p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
-                        <li>Developed and maintained responsive web applications aligned with business requirements, ensuring cross-browser compatibility and mobile responsiveness across devices.</li>
-                        <li>Enhanced UI components using CSS and JavaScript, improving user interaction flow and reducing reported UI defects during testing.</li>
-                        <li>Designed wireframes and interactive prototypes in Figma to streamline stakeholder feedback and accelerate feature validation.</li>
-                        <li>Participated in Agile sprints, managing tasks in Jira and consistently delivering features within defined timelines.</li>
+                        <li>Developed and maintained responsive web applications aligned with business requirements,
+                            ensuring cross-browser compatibility and mobile responsiveness across devices.</li>
+                        <li>Enhanced UI components using CSS and JavaScript, improving user interaction flow and
+                            reducing reported UI defects during testing.</li>
+                        <li>Designed wireframes and interactive prototypes in Figma to streamline stakeholder feedback
+                            and accelerate feature validation.</li>
+                        <li>Participated in Agile sprints, managing tasks in Jira and consistently delivering features
+                            within defined timelines.</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Direct Sourcing Solutions - Intern -->
             <div class="relative pl-6 md:pl-8 group reveal">
-                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
+                <span
+                    class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 border-4 border-[#f7f6f3] group-hover:scale-125 transition-transform"></span>
                 <div class="cream-card cream-card-hover p-6 md:p-8 rounded-2xl">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
                         <div>
                             <h3 class="text-xl font-bold text-slate-800">Junior Software Developer (Intern)</h3>
                             <h4 class="text-slate-600 font-semibold text-sm">Direct Sourcing Solutions</h4>
                         </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jan 2022 - Jun 2022</span>
+                        <span class="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">Jan
+                            2022 - Jun 2022</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga (Remote)</p>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot"></i> Clark, Pampanga
+                        (Remote)</p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm leading-relaxed">
-                        <li>Developed training applications using the OutSystems platform, implementing basic business logic and responsive UI components.</li>
+                        <li>Developed training applications using the OutSystems platform, implementing basic business
+                            logic and responsive UI components.</li>
                         <li>Created wireframes and prototypes in Figma to support feature design and feedback.</li>
-                        <li>Collaborated with developers in an Agile environment, assisting with testing and issue resolution.</li>
+                        <li>Collaborated with developers in an Agile environment, assisting with testing and issue
+                            resolution.</li>
                     </ul>
                 </div>
             </div>
@@ -467,16 +570,19 @@
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
+
             <!-- RAG System -->
             <div class="cream-card cream-card-hover rounded-2xl overflow-hidden flex flex-col group reveal">
                 <div class="h-48 bg-slate-100 relative overflow-hidden border-b border-slate-200">
-                    <img src="rag.png" alt="RAG System Screenshot" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    <img src="./images/rag.png" alt="RAG System Screenshot"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">RAG System</h3>
-                        <p class="text-slate-600 text-sm mb-4">Retrieval-Augmented Generation application for querying context-aware document datasets.</p>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">RAG
+                            System</h3>
+                        <p class="text-slate-600 text-sm mb-4">Retrieval-Augmented Generation application for querying
+                            context-aware document datasets.</p>
                         <div class="flex flex-wrap gap-1.5 mb-6">
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">FastAPI</span>
@@ -484,10 +590,12 @@
                         </div>
                     </div>
                     <div class="flex gap-3 pt-4 border-t border-slate-100">
-                        <a href="https://github.com/JP-DelaVega/chat.git" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
+                        <a href="https://github.com/JP-DelaVega/chat.git" target="_blank"
+                            class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
                             Code
                         </a>
-                        <a href="https://chat-hazel-three-68.vercel.app/" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
+                        <a href="https://chat-hazel-three-68.vercel.app/" target="_blank"
+                            class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
                             Demo
                         </a>
                     </div>
@@ -497,12 +605,16 @@
             <!-- SwiftCV -->
             <div class="cream-card cream-card-hover rounded-2xl overflow-hidden flex flex-col group reveal">
                 <div class="h-48 bg-slate-100 relative overflow-hidden border-b border-slate-200">
-                    <img src="swiftCV.png" alt="SwiftCV Screenshot" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    <img src="./images/swiftCV.png" alt="SwiftCV Screenshot"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">SwiftCV</h3>
-                        <p class="text-slate-600 text-sm mb-4">AI-powered resume builder with predefined templates that leverages LLMs to generate personalized resume layouts and includes an ATS score checker to help optimize resumes for applicant tracking systems.</p>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">
+                            SwiftCV</h3>
+                        <p class="text-slate-600 text-sm mb-4">AI-powered resume builder with predefined templates that
+                            leverages LLMs to generate personalized resume layouts and includes an ATS score checker to
+                            help optimize resumes for applicant tracking systems.</p>
                         <div class="flex flex-wrap gap-1.5 mb-6">
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">Node.js</span>
@@ -510,10 +622,12 @@
                         </div>
                     </div>
                     <div class="flex gap-3 pt-4 border-t border-slate-100">
-                        <a href="https://github.com/JP-DelaVega/SwiftCV.git" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
+                        <a href="https://github.com/JP-DelaVega/SwiftCV.git" target="_blank"
+                            class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
                             Code
                         </a>
-                        <a href="https://swift-cv-xi.vercel.app/" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
+                        <a href="https://swift-cv-xi.vercel.app/" target="_blank"
+                            class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
                             Demo
                         </a>
                     </div>
@@ -523,12 +637,15 @@
             <!-- Job Application Tracker / PocketTrack -->
             <div class="cream-card cream-card-hover rounded-2xl overflow-hidden flex flex-col group reveal">
                 <div class="h-48 bg-slate-100 relative overflow-hidden border-b border-slate-200">
-                    <img src="pocketTrack.png" alt="Job Application Tracker Screenshot" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    <img src="./images/pocketTrack.png" alt="Job Application Tracker Screenshot"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">Job Application Tracker</h3>
-                        <p class="text-slate-600 text-sm mb-4">Job application pipeline tracker paired with an AI module for practice interview preparation.</p>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-sky-600 transition-colors">Job
+                            Application Tracker</h3>
+                        <p class="text-slate-600 text-sm mb-4">Job application pipeline tracker paired with an AI module
+                            for practice interview preparation.</p>
                         <div class="flex flex-wrap gap-1.5 mb-6">
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">Node.js</span>
@@ -536,10 +653,12 @@
                         </div>
                     </div>
                     <div class="flex gap-3 pt-4 border-t border-slate-100">
-                        <a href="https://github.com/JP-DelaVega/Job-Application-Tracker.git" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
+                        <a href="https://github.com/JP-DelaVega/Job-Application-Tracker.git" target="_blank"
+                            class="flex-1 text-center py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold transition-all">
                             Code
                         </a>
-                        <a href="https://job-application-tracker-ten-beta.vercel.app/" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
+                        <a href="https://job-application-tracker-ten-beta.vercel.app/" target="_blank"
+                            class="flex-1 text-center py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 text-xs font-semibold transition-all shadow-sm">
                             Demo
                         </a>
                     </div>
@@ -557,36 +676,84 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 text-xl flex-shrink-0"><i class="fa-solid fa-certificate"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Building GenAI Applications with MongoDB</h4><p class="text-xs text-slate-500">MongoDB • 2026</p></div>
+                <div
+                    class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 text-xl flex-shrink-0">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Building GenAI Applications with MongoDB</h4>
+                    <p class="text-xs text-slate-500">MongoDB • 2026</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-solid fa-certificate"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Event-Driven Applications Foundations Course</h4><p class="text-xs text-slate-500">Vantiq • 2026</p></div>
+                <div
+                    class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Event-Driven Applications Foundations Course</h4>
+                    <p class="text-xs text-slate-500">Vantiq • 2026</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-brands fa-microsoft"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Microsoft Certified: Azure Fundamentals</h4><p class="text-xs text-slate-500">Microsoft • 2025</p></div>
+                <div
+                    class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
+                    <i class="fa-brands fa-microsoft"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Microsoft Certified: Azure Fundamentals</h4>
+                    <p class="text-xs text-slate-500">Microsoft • 2025</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Front-end Developer Specialist (OutSystems 11)</h4><p class="text-xs text-slate-500">OutSystems • 2024</p></div>
+                <div
+                    class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Front-end Developer Specialist (OutSystems 11)</h4>
+                    <p class="text-xs text-slate-500">OutSystems • 2024</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Associate Developer (ODC)</h4><p class="text-xs text-slate-500">OutSystems • 2024</p></div>
+                <div
+                    class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Associate Developer (ODC)</h4>
+                    <p class="text-xs text-slate-500">OutSystems • 2024</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Associate Reactive Developer (OutSystems 11)</h4><p class="text-xs text-slate-500">OutSystems • 2023</p></div>
+                <div
+                    class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl flex-shrink-0">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Associate Reactive Developer (OutSystems 11)</h4>
+                    <p class="text-xs text-slate-500">OutSystems • 2023</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-brands fa-meta"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">HTML and CSS in depth</h4><p class="text-xs text-slate-500">Meta • 2022</p></div>
+                <div
+                    class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
+                    <i class="fa-brands fa-meta"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">HTML and CSS in depth</h4>
+                    <p class="text-xs text-slate-500">Meta • 2022</p>
+                </div>
             </div>
             <div class="cream-card cream-card-hover p-4 rounded-xl flex items-center gap-4 reveal">
-                <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0"><i class="fa-brands fa-meta"></i></div>
-                <div><h4 class="font-bold text-sm text-slate-800">Principles of UX/UI Design</h4><p class="text-xs text-slate-500">Meta • 2022</p></div>
+                <div
+                    class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 text-xl flex-shrink-0">
+                    <i class="fa-brands fa-meta"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">Principles of UX/UI Design</h4>
+                    <p class="text-xs text-slate-500">Meta • 2022</p>
+                </div>
             </div>
         </div>
     </section>
@@ -595,32 +762,55 @@
     <section id="contact" class="max-w-4xl mx-auto px-6 py-16 mb-20 reveal">
         <div class="cream-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-slate-200">
             <h2 class="text-3xl font-bold mb-4 text-slate-800">Let's Connect</h2>
-            <p class="text-slate-600 mb-8 max-w-md mx-auto">Open to discussing Full-Stack, Low-Code, or AI Engineering opportunities.</p>
-            
-            <a href="mailto:jayplought@gmail.com" class="inline-flex items-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all text-lg transform hover:-translate-y-1">
+            <p class="text-slate-600 mb-8 max-w-md mx-auto">Open to discussing Full-Stack, Low-Code, or AI Engineering
+                opportunities.</p>
+
+            <a href="mailto:jayplought@gmail.com"
+                class="inline-flex items-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all text-lg transform hover:-translate-y-1">
                 <i class="fa-solid fa-envelope"></i> Send Email
             </a>
         </div>
     </section>
 
-   <!-- FLOATING CHATBOT WIDGET -->
+    <!-- FLOATING CHATBOT WIDGET -->
     <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
         <!-- Chat Toggle Button -->
-        <button id="chat-toggle" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl transition-all transform hover:scale-105 active:scale-95 focus:outline-none">
-            <i id="chat-icon-open" class="fa-solid fa-comments"></i>
-            <i id="chat-icon-close" class="fa-solid fa-xmark hidden"></i>
-        </button>
+        <!-- Floating AI Chat Toggle Button -->
+        <div id="chat-toggle-wrapper" class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+            <!-- Tooltip -->
+            <div id="chat-tooltip"
+                class="opacity-0 translate-x-2 transition-all duration-300 pointer-events-none bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
+                Ask anything about me!
+                <div class="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-900 rotate-45"></div>
+            </div>
+            <!-- Toggle Button -->
+            <button id="chat-toggle"
+                class="relative group bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-600 hover:to-purple-700 text-white px-4 h-14 rounded-full shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none">
+                <!-- AI Bot Icon -->
+                <i id="chat-icon-open" class="fa-solid fa-robot text-xl transition-transform group-hover:rotate-12"></i>
+
+                <!-- Close Icon (Hidden by default) -->
+                <i id="chat-icon-close" class="fa-solid fa-xmark text-xl hidden"></i>
+
+                <!-- Inline Label Text inside Button -->
+                <span id="chat-toggle-text" class="text-xs font-bold tracking-wide">Ask AI</span>
+            </button>
+        </div>
 
         <!-- Chat Container Window -->
-        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-[90vw] sm:w-[380px] h-[520px] cream-card rounded-2xl flex flex-col shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
+        <div id="chat-window"
+            class="hidden absolute bottom-20 right-0 w-[90vw] sm:w-[380px] h-[520px] cream-card rounded-2xl flex flex-col shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
             <!-- Header -->
-            <div class="p-3.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800 shadow-sm">
+            <div
+                class="p-3.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800 shadow-sm">
                 <div class="flex items-center gap-2.5">
                     <div class="relative">
-                        <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs border border-sky-500/30">
-                            <i class="fa-solid fa-sparkles"></i>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs  overflow-hidden">
+                            <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
                         </div>
-                        <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+                        <span
+                            class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
                     </div>
                     <div>
                         <h3 class="font-bold text-xs tracking-wide">JP's AI Assistant</h3>
@@ -629,17 +819,20 @@
                 </div>
                 <!-- Header Controls: Maximize & Close -->
                 <div class="flex items-center gap-1">
-                    <button id="chat-max-btn" onclick="toggleMaximize()" title="Maximize/Restore" class="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
+                    <button id="chat-max-btn" onclick="toggleMaximize()" title="Maximize/Restore"
+                        class="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
                         <i id="maxIcon" class="fa-solid fa-expand text-xs"></i>
                     </button>
-                    <button id="chat-close-btn" class="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
+                    <button id="chat-close-btn"
+                        class="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
                         <i class="fa-solid fa-xmark text-xs"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Free Tier Delay Warning Banner -->
-            <div class="bg-amber-500/10 border-b border-amber-500/20 px-3 py-1.5 text-[11px] text-amber-800 flex items-center gap-1.5 font-medium flex-shrink-0">
+            <div
+                class="bg-amber-500/10 border-b border-amber-500/20 px-3 py-1.5 text-[11px] text-amber-800 flex items-center gap-1.5 font-medium flex-shrink-0">
                 <i class="fa-solid fa-triangle-exclamation text-amber-600 flex-shrink-0"></i>
                 <span>Note: Responses may take a few seconds on Render's free tier server.</span>
             </div>
@@ -648,19 +841,24 @@
             <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
                 <!-- Initial Welcome Message -->
                 <div class="flex gap-2.5 max-w-[85%]">
-                    <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
-                        AI
+                    <div
+                        class="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 overflow-hidden border border-sky-200">
+                        <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
                     </div>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
-                        Hello! 👋 I'm JP's AI assistant powered by Gemini 2.5 Flash. Ask me anything about his skills, experience, or projects!
+                    <div
+                        class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
+                        Hello! 👋 I'm JP's AI assistant powered by Gemini 2.5 Flash. Ask me anything about his skills,
+                        experience, or projects!
                     </div>
                 </div>
             </div>
 
             <!-- Input Form -->
             <form id="chat-form" class="p-3 bg-white/80 border-t border-slate-200 flex items-center gap-2">
-                <input type="text" id="chat-input" placeholder="Type a message..." required class="flex-1 bg-slate-100 border border-slate-200 text-slate-800 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all">
-                <button type="submit" id="chat-submit" class="bg-sky-600 hover:bg-sky-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition-all flex-shrink-0 shadow-sm">
+                <input type="text" id="chat-input" placeholder="Type a message..." required
+                    class="flex-1 bg-slate-100 border border-slate-200 text-slate-800 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all">
+                <button type="submit" id="chat-submit"
+                    class="bg-sky-600 hover:bg-sky-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition-all flex-shrink-0 shadow-sm">
                     <i class="fa-solid fa-paper-plane text-xs"></i>
                 </button>
             </form>
@@ -669,11 +867,30 @@
 
     <!-- SCRIPTS -->
     <script>
+        // Function to toggle maximized/expanded modal view
+        function toggleMaximize() {
+            const chatWindow = document.getElementById('chat-window');
+            const maxIcon = document.getElementById('maxIcon');
+
+            if (!chatWindow) return;
+
+            chatWindow.classList.toggle('maximized');
+
+            if (maxIcon) {
+                if (chatWindow.classList.contains('maximized')) {
+                    maxIcon.classList.remove('fa-expand');
+                    maxIcon.classList.add('fa-compress');
+                } else {
+                    maxIcon.classList.remove('fa-compress');
+                    maxIcon.classList.add('fa-expand');
+                }
+            }
+        }
         // BACKEND RENDER ENDPOINT CONFIGURATION
         const BACKEND_URL = "https://chat-6t0g.onrender.com/ask/stream";
-        
+
         // Optional default database name if expected by your RAG backend
-        const DEFAULT_DB_NAME = "default"; 
+        const DEFAULT_DB_NAME = "AboutMe_chunks";
 
         // In-memory conversation history array
         let conversationHistory = [];
@@ -723,8 +940,8 @@
 
         function appendMessage(sender, text) {
             const msgDiv = document.createElement('div');
-            msgDiv.className = sender === 'user' 
-                ? 'flex justify-end' 
+            msgDiv.className = sender === 'user'
+                ? 'flex justify-end'
                 : 'flex gap-2.5 max-w-[85%]';
 
             if (sender === 'user') {
@@ -735,8 +952,8 @@
                 `;
             } else {
                 msgDiv.innerHTML = `
-                    <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
-                        AI
+                    <div class="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 overflow-hidden border border-sky-200">
+                        <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
                     </div>
                     <div class="msg-content bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-slate-700 leading-relaxed text-xs">
                         ${text}
@@ -754,15 +971,15 @@
             typingDiv.id = 'typing-indicator';
             typingDiv.className = 'flex gap-2.5 max-w-[85%]';
             typingDiv.innerHTML = `
-                <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">
-                    AI
-                </div>
-                <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
-                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
-                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
-                </div>
-            `;
+                    <div class="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 overflow-hidden border border-sky-200">
+                        <img src="./images/cat.png" alt="AI Avatar" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
+                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
+                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></span>
+                    </div>
+                `;
             chatMessages.appendChild(typingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
@@ -773,7 +990,7 @@
         }
 
         function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
+            return str.replace(/[&<>'"]/g,
                 tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
             );
         }
@@ -866,6 +1083,7 @@
                 appendMessage('ai', 'Sorry, I could not connect to the backend server. Please verify CORS settings or server status.');
             }
         });
-</script>
+    </script>
 </body>
+
 </html>
